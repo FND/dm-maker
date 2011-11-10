@@ -4,6 +4,7 @@ DM_VERSION = "1.2.0"
 
 gem "dm-core", DM_VERSION
 gem "active_support"
+gem "i18n"
 
 group :test do
   gem "test-unit"
