@@ -3,6 +3,15 @@ dm-maker
 DataMapper extension to generate instances from YAML
 
 
+API
+===
+
+`DataMapper::Maker.make(src)`, where `src` is either an object or a YAML string
+
+when using references (see below), order of occurrence matters; instances must
+be defined before they can be referenced
+
+
 Examples
 ========
 
