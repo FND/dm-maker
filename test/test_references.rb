@@ -23,7 +23,7 @@ class ReferencesTest < Test::Unit::TestCase
         name: Jane
         family: { $ref: f1 }
     EOF
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
 
     assert_equal 1, Family.count
     assert_equal 2, Person.count

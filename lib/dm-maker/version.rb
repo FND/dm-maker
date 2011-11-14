@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 module DataMapper
-  module Yamler
+  module Maker
     VERSION = "1.0.0"
   end
 end

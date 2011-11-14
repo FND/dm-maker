@@ -18,7 +18,7 @@ class BasicsTest < Test::Unit::TestCase
         name: Jane Doe
         age: 13
     EOF
-    DataMapper::Yamler.make(yaml)
+    DataMapper::Maker.make(yaml)
 
     assert_equal 2, Person.count
     assert_equal "John Doe", Person.first.name
@@ -28,7 +28,7 @@ class BasicsTest < Test::Unit::TestCase
   end
 
   def test_accepts_plain_objects
-    DataMapper::Yamler.make({
+    DataMapper::Maker.make({
       "Person" => [
         {
           "name" => "John Doe",
@@ -61,7 +61,7 @@ class BasicsTest < Test::Unit::TestCase
       -
         name: Doe
     EOF
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
 
     assert_equal 2, data.length
     assert_equal 2, data["Person"].length
@@ -83,7 +83,7 @@ class BasicsTest < Test::Unit::TestCase
       <% end %>
     EOF
 
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
     assert_equal 2, data["Person"].length
     assert_equal "Johnny 5", data["Person"].first.name
     assert_equal 0, data["Person"].first.age

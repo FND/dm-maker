@@ -16,7 +16,7 @@ class AssociationsTest < Test::Unit::TestCase
         family:
           name: Doe
     EOF
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
 
     assert_equal 1, Person.count
     assert_equal 1, Family.count
@@ -35,7 +35,7 @@ class AssociationsTest < Test::Unit::TestCase
         -
           name: Jane
     EOF
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
 
     assert_equal 1, Family.count
     assert_equal 2, Person.count
@@ -62,7 +62,7 @@ class AssociationsTest < Test::Unit::TestCase
             manufacturer:
               name: Knight Industries
     EOF
-    data = DataMapper::Yamler.make(yaml)
+    data = DataMapper::Maker.make(yaml)
 
     assert_equal 1, Family.count
     assert_equal 1, Person.count

@@ -6,7 +6,7 @@ require "dm-migrations"
 require "test/unit"
 
 require "models"
-require "dm-yamler"
+require "dm-maker"
 
 DataMapper.setup(:default, "sqlite::memory:")
 DataMapper.finalize

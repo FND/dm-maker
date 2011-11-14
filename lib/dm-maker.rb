@@ -6,10 +6,10 @@ require "active_support"
 require "active_support/core_ext"
 require "active_support/inflector"
 
-require "dm-yamler/version"
+require "dm-maker/version"
 
 module DataMapper
-  module Yamler
+  module Maker
 
     REL_TYPES = {
       :to_one => [DataMapper::Associations::ManyToOne::Relationship,
