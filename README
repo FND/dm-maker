@@ -1,0 +1,55 @@
+dm-maker
+
+DataMapper extension to generate instances from YAML
+
+
+Examples
+========
+
+(extracted from tests, which provide a more comprehensive overview)
+
+    Person:
+    -
+      name: John Doe
+      age: 11
+    -
+      name: Jane Doe
+      age: 13
+
+associations:
+
+    Person:
+      name: John
+      cars:
+      -
+        name: Herbie
+        manufacturer:
+          name: VW
+      -
+        name: KITT
+        manufacturer:
+          name: Knight Industries
+
+ERB expansion:
+
+    Person:
+    <% 2.times do |i| %>
+    -
+      name: Johnny <%= i + 5 %>
+      age: <%= i %>
+    <% end %>
+
+references:
+
+    Family:
+    -
+      $id: f1
+      name: Doe
+
+    Person:
+    -
+      name: John
+      family: { $ref: f1 }
+    -
+      name: Jane
+      family: { $ref: f1 }
