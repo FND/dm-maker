@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "dm-core", DM_VERSION
-  s.add_dependency "active_support"
+  s.add_dependency "activesupport"
   s.add_dependency "i18n"
   s.add_development_dependency "test-unit"
   s.add_development_dependency "rake"
