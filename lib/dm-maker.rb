@@ -50,7 +50,7 @@ module DataMapper
               create_instance(assoc_class, d, cache)
             }
           elsif REL_TYPES[:to_one].include? rel.class
-            if custom_class = d.delete("$class") # TODO: document and test
+            if custom_class = value.delete("$class") # TODO: document and test
               assoc_class = custom_class.constantize
             else
               assoc_class = (rel.child_model == klass or klass < rel.child_model) ?
