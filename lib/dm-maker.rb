@@ -18,6 +18,9 @@ module DataMapper
           DataMapper::Associations::OneToMany::Relationship]
     }
 
+    # returns a hash of instances by class
+    # if any errors occur, the respective instances are stored in a special
+    # "_errors" member
     def self.make(data)
       data = load_yaml(data) if data.class == String
 
@@ -25,7 +28,14 @@ module DataMapper
       return data.each_with_object({}) do |(class_name, instances), hsh|
         klass = class_name.constantize
         hsh[class_name] = instances.map { |instance_data|
-          create_instance(klass, instance_data, cache)
+          instance = create_instance(klass, instance_data, cache)
+          begin
+            instance.save
+          rescue DataMapper::SaveFailureError
+            hsh["_errors"] ||= [] # XXX: hacky!?
+            hsh["_errors"] << instance
+          end
+          instance
         }
       end
     end
@@ -63,11 +73,6 @@ module DataMapper
       }
 
       instance = klass.new(data)
-      begin
-        instance.save
-      rescue DataMapper::SaveFailureError
-        # rely on parent saving -- FIXME: hacky!?
-      end
 
       cache[id] = instance if id
       return instance

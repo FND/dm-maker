@@ -39,7 +39,7 @@ associations:
         manufacturer:
           name: Knight Industries
 
-(note that associated instances can include a `$class` attribute, which might be
+(note that associated instances may include a `$class` attribute, which might be
 required due to Single Table Inheritance)
 
 ERB expansion:
