@@ -25,16 +25,12 @@ module DataMapper
       data = load_yaml(data) if data.class == String
 
       cache = {}
-      return data.each_with_object({}) do |(class_name, instances), hsh|
+      res = { "_errors" => [] }
+      return data.each_with_object(res) do |(class_name, instances), hsh|
         klass = class_name.constantize
         hsh[class_name] = instances.map { |instance_data|
           instance = create_instance(klass, instance_data, cache)
-          begin
-            instance.save
-          rescue DataMapper::SaveFailureError
-            hsh["_errors"] ||= [] # XXX: hacky!?
-            hsh["_errors"] << instance
-          end
+          hsh["_errors"] << instance unless instance.save
           instance
         }
       end

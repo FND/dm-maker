@@ -63,7 +63,8 @@ class BasicsTest < Test::Unit::TestCase
     EOF
     data = DataMapper::Maker.make(yaml)
 
-    assert_equal 2, data.length
+    assert_equal 3, data.length # includes "_errors"
+    assert_equal 0, data["_errors"].length
     assert_equal 2, data["Person"].length
     assert_equal "John", data["Person"][0].name
     assert_equal 11, data["Person"][0].age

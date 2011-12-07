@@ -11,6 +11,9 @@ API
 when using references (see below), order of occurrence matters; instances must
 be defined before they can be referenced
 
+if any errors occur, the respective instance is stored in an "_errors" member
+of the returned hash (unless `raise_on_save_failure` is used)
+
 
 Examples
 ========
